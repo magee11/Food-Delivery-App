@@ -1,0 +1,23 @@
+.google-signin{
+    background-color: transparent;
+    height: inherit;
+    width: inherit;
+    font-size: 16px;
+    display: flex;
+    justify-content: center;
+    font-weight: 500;
+}
+.google-signin img{
+    height: 25px;
+    width: 25px;
+}
+.google-signin button{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-weight: 500;
+    padding: 6px;
+    gap: 6px;
+    border: 1px solid tomato;
+    border-radius: 6px;
+}
