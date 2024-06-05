@@ -39,14 +39,14 @@
   width: 25px;
 }
 .sidebar-name {
-  font-size: 19px;
-  margin: 14px 23%;
+  font-size: 17px;
+  margin: 0px 25%;
 }
 .sidebar-profile{
   height: 75px;
   background: aquamarine;
   border-radius: 50px;
-  margin: 0 auto 10px;
+  margin: 0 auto 25px;
   display: flex;
   width: 75px;
 }

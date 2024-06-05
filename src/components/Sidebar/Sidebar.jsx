@@ -2,11 +2,12 @@ import React, { useContext } from "react";
 import "./sidebar.css";
 import { StoreContext } from "../../context/StoreContext";
 import { assets } from "../../assets/frontend_assets/assets";
+import { useNavigate } from "react-router-dom";
 
 const Sidebar = ({ logOut, setSidebar, sidebar, profile, setShowLogin }) => {
-  
   console.log(profile, "SideBar");
-  const { isDarkTheme,handleDarktheme } = useContext(StoreContext);
+  const { isDarkTheme, handleDarkTheme } = useContext(StoreContext);
+  const navigate = useNavigate();
   return (
     <div
       className="sidebar"
@@ -42,35 +43,40 @@ const Sidebar = ({ logOut, setSidebar, sidebar, profile, setShowLogin }) => {
             <span>Sign In</span>
           </li>
         ) : (
-          <li>
+          <li
+            onClick={() => {
+              navigate("/profile");
+              setSidebar(false);
+            }}
+          >
             <img src={assets.sidebar_profile_svg} alt="" />
             <span>Profile</span>
           </li>
         )}
-        <li onClick={() => navigate("/profile")}>
+        <li>
           <img src={assets.orders_svg} alt="" />
           <span>Orders</span>
         </li>
-        <li onClick={() => navigate("/profile")}>
+        <li>
           <img src={assets.foods} alt="" />
           <span>Foods</span>
         </li>
-        <li onClick={() => navigate("/profile")}>
+        <li>
           <img src={assets.category} alt="" />
           <span>Category</span>
         </li>
-        <li onClick={() => navigate("/profile")}>
+        <li>
           <img src={assets.download} alt="" />
           <span>Mobile App</span>
         </li>
         <li>
-        <img src={assets.dark} alt="" />
+          <img src={assets.dark} alt="" />
           <span>Theme</span>
           <label className="switch">
             <input
               type="checkbox"
               checked={isDarkTheme}
-              onChange={handleDarktheme}
+              onChange={handleDarkTheme}
             />
             <span className="slider round"></span>
           </label>

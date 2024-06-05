@@ -36,6 +36,7 @@
     font-size: .8vw;
     border: 1px solid tomato;
     border-radius: 50px;
+    cursor: pointer;
 }
 @media (max-width:1050px) {
     .header-content{

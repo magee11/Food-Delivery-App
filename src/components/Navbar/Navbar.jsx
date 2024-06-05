@@ -7,10 +7,9 @@ import { googleLogout } from "@react-oauth/google";
 import { useNavigate } from "react-router-dom";
 import Sidebar from "../Sidebar/Sidebar";
 export const Navbar = ({ setShowLogin }) => {
-  const { cartCount, handleDarktheme, isDarkTheme, profile, setProfile } =
+  const { cartCount, handleDarkTheme, isDarkTheme, profile, setProfile } =
     useContext(StoreContext);
-    console.log(profile,"Navbar");
-  const [menu, setMenu] = useState("menu");
+  const [menu, setMenu] = useState("home");
   const [dropdown, setDropDown] = useState(false);
   const [sidebar, setSidebar] = useState(false);
   const Darktheme = {
@@ -24,6 +23,7 @@ export const Navbar = ({ setShowLogin }) => {
     googleLogout();
     setProfile(null);
     setDropDown(false);
+    localStorage.removeItem("userProfile")
   };
   const navigate = useNavigate();
   const width = window.innerHeight;
@@ -31,7 +31,7 @@ export const Navbar = ({ setShowLogin }) => {
   return (
     <>
       <div className="navbar">
-        {width >= 900 ? (
+        {width >= 1024 ? (
           <img
             src={assets.logo}
             className="logo"
@@ -39,7 +39,7 @@ export const Navbar = ({ setShowLogin }) => {
           />
         ) : (
           <div className="menu-icons">
-            <div onClick={()=>setSidebar(!sidebar)}>
+            <div onClick={() => setSidebar(!sidebar)}>
               <img src={assets.menu_svg} className="menu-icon" />
             </div>
             <div>
@@ -55,54 +55,46 @@ export const Navbar = ({ setShowLogin }) => {
           className="navbar-menu"
           style={isDarkTheme ? Darktheme : lightTheme}
         >
-          <li
-            onClick={() => {
-              setMenu("home");
-            }}
-            className={menu === "home" ? "active" : ""}
-          >
-            <Link to="header" smooth={true} duration={500}>
+          <Link to="header" smooth={true} duration={500}>
+            <li
+              onClick={() => setMenu("home")}
+              className={menu === "home" ? "active" : ""}
+            >
               Home
-            </Link>
-          </li>
-          <li
-            onClick={() => {
-              setMenu("menu");
-            }}
-            className={menu === "menu" ? "active" : ""}
-          >
-            <Link to="menu" smooth={true} duration={500}>
+            </li>
+          </Link>
+          <Link to="menu" smooth={true} duration={500}>
+            <li
+              onClick={() => setMenu("category")}
+              className={menu === "category" ? "active" : ""}
+            >
               Category
-            </Link>
-          </li>
-          <li
-            onClick={() => {
-              setMenu("app");
-            }}
-            className={menu === "app" ? "active" : ""}
-          >
-            <Link to="food" smooth={true} duration={500}>
+            </li>
+          </Link>
+          <Link to="food" smooth={true} duration={500}>
+            <li
+              onClick={() => setMenu("foods")}
+              className={menu === "foods" ? "active" : ""}
+            >
               Foods
-            </Link>
-          </li>
-          <li
-            onClick={() => {
-              setMenu("contact");
-            }}
-            className={menu === "contact" ? "active" : ""}
-          >
-            <Link to="app-download" smooth={true} duration={500}>
+            </li>
+          </Link>
+          <Link to="app-download" smooth={true} duration={500}>
+            <li
+              onClick={() => setMenu("app")}
+              className={menu === "app" ? "active" : ""}
+            >
               Mobile App
-            </Link>
-          </li>
+            </li>
+          </Link>
         </ul>
         <div className="navbar-right">
-          {width >= 900 && (
+          {width >= 990 && (
             <label className="switch">
               <input
                 type="checkbox"
                 checked={isDarkTheme}
-                onChange={handleDarktheme}
+                onChange={handleDarkTheme}
               />
               <span className="slider round"></span>
             </label>
@@ -112,7 +104,7 @@ export const Navbar = ({ setShowLogin }) => {
             <img src={assets.basket_icon} />
             <div className="dot">{cartCount}</div>
           </div>
-          {width >= 900 && (
+          {width >= 990 && (
             <div>
               {!profile ? (
                 <button className="signin" onClick={() => setShowLogin(true)}>
@@ -140,7 +132,12 @@ export const Navbar = ({ setShowLogin }) => {
                 Hi {profile.given_name} 👋
               </span>
               <ul className="profile-dropdown-list">
-                <li>
+                <li
+                  onClick={() => {
+                    navigate("/profile");
+                    setDropDown(false);
+                  }}
+                >
                   <img src={assets.profile_icon_svg} alt="" />
                   <span>Profile</span>
                 </li>
@@ -160,7 +157,13 @@ export const Navbar = ({ setShowLogin }) => {
 
       {/* SideBar */}
       {sidebar && (
-        <Sidebar logOut={logOut} setSidebar={setSidebar} sidebar={sidebar}  setShowLogin={setShowLogin} profile={profile}/>
+        <Sidebar
+          logOut={logOut}
+          setSidebar={setSidebar}
+          sidebar={sidebar}
+          setShowLogin={setShowLogin}
+          profile={profile}
+        />
       )}
     </>
   );

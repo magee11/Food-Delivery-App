@@ -37,7 +37,7 @@ const FoodItem = ({ item, index }) => {
         ) : (
           <div
             className="food-item-counter"
-            style={{ background: isDarkTheme ? "#101010" : "#ccc" }}
+            style={{ background: isDarkTheme ? "#101010" : "white" }}
           >
             <img
               src={assets.remove_icon_red}
