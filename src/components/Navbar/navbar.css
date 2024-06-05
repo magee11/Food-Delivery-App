@@ -213,10 +213,6 @@ input:checked + .slider:before {
     justify-content: space-between;
     width: 100%;
   }
-  .navbar {
-    padding: 20px 0 0;
-  }
-
 
   .navbar-menu {
     gap: 15px;
