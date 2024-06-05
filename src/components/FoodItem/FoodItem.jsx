@@ -10,6 +10,7 @@ const FoodItem = ({ item, index }) => {
   const DarkThemeDescription = {
     color: "white",
   };
+  
   const { isDarkTheme } = useContext(StoreContext);
   const darkTheme = {
     color: "white",
@@ -28,7 +29,7 @@ const FoodItem = ({ item, index }) => {
       <div className="food-item-img-container">
         <img src={image} className="food-item-image" />
         {!cartItems[_id] ? (
-          <img
+          <img 
             className="add"
             onClick={() => addToCart(_id)}
             src={assets.add_icon_white}

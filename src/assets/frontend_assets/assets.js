@@ -64,7 +64,14 @@ import profile_icon_svg from './profile.svg'
 import store_svg from './store.svg'
 import logout_svg from './logout.svg'
 import profile_outline_svg from './profile_outline.svg'
-
+import menu_svg from './menu.svg'
+import sidebar_profile_svg from './sidebar_profile.svg'
+import sidebar_exit from './sidebar_exit.svg'
+import orders_svg from './orders.svg'
+import download from './download.svg'
+import foods from './foods.svg'
+import category from './category.svg'
+import dark from './dark.svg'
 export const assets = {
     logo,
     basket_icon,
@@ -90,6 +97,14 @@ export const assets = {
     profile_outline_svg,
     store_svg,
     logout_svg,
+    menu_svg,
+    sidebar_profile_svg,
+    sidebar_exit,
+    orders_svg,
+    download,
+    foods,
+    category,
+    dark
 }
 
 export const menu_list = [

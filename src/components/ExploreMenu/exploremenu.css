@@ -60,12 +60,28 @@
 }
 
 @media (max-width: 900px) {
+  .clear{
+    margin: 0;
+    border: 1px solid tomato;
+    width: fit-content;
+    padding: 1px 5px;
+    border-radius: 50px;
+    display: flex;
+    right: 30px;
+    position: absolute;
+    bottom: 0;
+    margin-top: 10px;
+  }
+  .clear p{
+    font-size: 12px;
+  }
   .explore-menu-text {
     width: 100%;
     font-size: 10px;
   }
   .explore-menu {
     gap: 10px;
+    position: relative;
   }
   .explore-menu-list{
     gap: 15px;
