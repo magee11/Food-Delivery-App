@@ -23,7 +23,7 @@ export const Navbar = ({ setShowLogin }) => {
     googleLogout();
     setProfile(null);
     setDropDown(false);
-    localStorage.removeItem("userProfile")
+    localStorage.removeItem("userProfile");
   };
   const navigate = useNavigate();
   const width = window.innerHeight;
@@ -31,7 +31,7 @@ export const Navbar = ({ setShowLogin }) => {
   return (
     <>
       <div className="navbar">
-        {width >= 1024 ? (
+        {width >= 950 ? (
           <img
             src={assets.logo}
             className="logo"
