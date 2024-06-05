@@ -208,8 +208,15 @@ input:checked + .slider:before {
     width: 80px;
   }
   .navbar {
+    display: flex;
+    padding: 20px 0 0;
+    justify-content: space-between;
+    width: 100%;
+  }
+  .navbar {
     padding: 20px 0 0;
   }
+
 
   .navbar-menu {
     gap: 15px;
