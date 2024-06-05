@@ -26,16 +26,15 @@ const ExporeMenu = ({ category, setCategory }) => {
       <div className="explore-menu-list">
         {menu_list?.map((items, index) => {
           return (
-            <div
-              className="explore-menu-list-items"
-              key={index}
-              onClick={() => setCategory(items.menu_name)}
-            >
+            <div className="explore-menu-list-items" key={index}>
               <img
+                onClick={() => setCategory(items.menu_name)}
                 src={items.menu_image}
                 className={category === items.menu_name ? "active" : ""}
               />
-              <p style={isDarkTheme ? darkTheme : lightTheme}>{items.menu_name}</p>
+              <p style={isDarkTheme ? darkTheme : lightTheme}  onClick={() => setCategory("All")}>
+                {items.menu_name}
+              </p>
             </div>
           );
         })}

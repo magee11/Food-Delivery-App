@@ -20,3 +20,16 @@ a{
     opacity: 1;
   }
 }
+
+@keyframes slideIn {
+  from {
+    left: -60%; 
+  }
+  to {
+    left: 0;
+  }
+}
+
+svg {
+  color: greenyellow;
+}
