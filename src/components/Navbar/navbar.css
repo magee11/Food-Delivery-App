@@ -9,6 +9,9 @@
   width: 180px;
   cursor: pointer;
 }
+.menu-icons{
+  display: none;
+}
 
 .navbar-menu {
   display: flex;

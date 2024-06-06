@@ -26,12 +26,12 @@ export const Navbar = ({ setShowLogin }) => {
     localStorage.removeItem("userProfile");
   };
   const navigate = useNavigate();
-  const width = window.innerHeight;
+  let width = window.innerWidth;
 
   return (
     <>
       <div className="navbar">
-        {width >= 950 ? (
+        {width >= 990 ? (
           <img
             src={assets.logo}
             className="logo"
