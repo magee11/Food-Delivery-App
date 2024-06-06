@@ -51,7 +51,9 @@
 .navbar li {
   cursor: pointer;
 }
-
+.search_icon{
+  cursor: pointer;
+}
 .navbar-search-icon {
   position: relative;
   cursor: pointer;

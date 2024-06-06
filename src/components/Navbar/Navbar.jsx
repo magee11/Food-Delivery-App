@@ -99,7 +99,11 @@ export const Navbar = ({ setShowLogin }) => {
               <span className="slider round"></span>
             </label>
           )}
-          <img src={assets.search_icon} />
+          <img
+            src={assets.search_icon}
+            className="search_icon"
+            onClick={() => navigate("/search")}
+          />
           <div className="navbar-search-icon" onClick={() => navigate("/cart")}>
             <img src={assets.basket_icon} />
             <div className="dot">{cartCount}</div>
