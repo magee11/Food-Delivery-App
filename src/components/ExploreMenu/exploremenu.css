@@ -26,8 +26,8 @@
   display: none;
 }
 .explore-menu-list img {
-  height: 160px;
-  width: 8.5vw;
+  height: 10rem;
+  width: 10rem;
   min-width: 80%;
   cursor: pointer;
   border-radius: 50%;
@@ -92,8 +92,8 @@
     font-size: 12px;
 }
   .explore-menu-list img {
-    height: 90px;
-    width: 90px;
+    height: 6rem;
+    width: 6rem;
 }
     .explore-menu hr{
       background-color: rgb(230 230 230)

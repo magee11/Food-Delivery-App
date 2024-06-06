@@ -3,7 +3,7 @@ import "./header.css";
 import { StoreContext } from "../../context/StoreContext";
 import { Link } from "react-scroll";
 const Header = () => {
-  const width = window.innerHeight;
+  const width = window.innerWidth;
   console.log(width, "width");
   const { isDarkTheme } = useContext(StoreContext);
   const darkTheme = {
@@ -18,7 +18,6 @@ const Header = () => {
     <div className="header" name="header">
       <div
         className="header-content"
-        style={isDarkTheme ? darkTheme : lightTheme}
       >
         <h2>Order your favourite food here</h2>
         <span>
