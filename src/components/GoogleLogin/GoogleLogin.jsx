@@ -41,7 +41,7 @@ const GoogleLoginComponent = ({ setShowLogin }) => {
   return (
     <div className="google-signin">
       <button onClick={login}>
-        <img src={assets.google_icon} /> Sign in with Google
+        <img src={assets.google_icon} alt="google_icon"/> Sign in with Google
       </button>
     </div>
   );

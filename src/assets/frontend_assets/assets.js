@@ -104,7 +104,7 @@ export const assets = {
     download,
     foods,
     category,
-    dark
+    dark,
 }
 
 export const menu_list = [

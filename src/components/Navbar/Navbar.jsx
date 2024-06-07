@@ -6,9 +6,19 @@ import { Link } from "react-scroll";
 import { googleLogout } from "@react-oauth/google";
 import { useNavigate } from "react-router-dom";
 import Sidebar from "../Sidebar/Sidebar";
+import Search from "../Search/Search";
 export const Navbar = ({ setShowLogin }) => {
-  const { cartCount, handleDarkTheme, isDarkTheme, profile, setProfile } =
-    useContext(StoreContext);
+  const {
+    cartCount,
+    handleDarkTheme,
+    isDarkTheme,
+    profile,
+    setProfile,
+    isSearch,
+    setIsSearch,
+    searchQuery,
+    setSearchQuery,
+  } = useContext(StoreContext);
   const [menu, setMenu] = useState("home");
   const [dropdown, setDropDown] = useState(false);
   const [sidebar, setSidebar] = useState(false);
@@ -34,13 +44,14 @@ export const Navbar = ({ setShowLogin }) => {
         {width >= 990 ? (
           <img
             src={assets.logo}
+            alt="logo"
             className="logo"
             onClick={() => navigate("/")}
           />
         ) : (
           <div className="menu-icons">
             <div onClick={() => setSidebar(!sidebar)}>
-              <img src={assets.menu_svg} className="menu-icon" />
+              <img src={assets.menu_svg} className="menu-icon" alt="menu_svg" />
             </div>
             <div>
               <img
@@ -65,7 +76,10 @@ export const Navbar = ({ setShowLogin }) => {
           </Link>
           <Link to="menu" smooth={true} duration={500}>
             <li
-              onClick={() => setMenu("category")}
+              onClick={() => {
+                setMenu("category");
+                navigate("/category");
+              }}
               className={menu === "category" ? "active" : ""}
             >
               Category
@@ -73,7 +87,10 @@ export const Navbar = ({ setShowLogin }) => {
           </Link>
           <Link to="food" smooth={true} duration={500}>
             <li
-              onClick={() => setMenu("foods")}
+              onClick={() => {
+                setMenu("foods");
+                navigate("/category");
+              }}
               className={menu === "foods" ? "active" : ""}
             >
               Foods
@@ -81,7 +98,10 @@ export const Navbar = ({ setShowLogin }) => {
           </Link>
           <Link to="app-download" smooth={true} duration={500}>
             <li
-              onClick={() => setMenu("app")}
+              onClick={() => {
+                setMenu("app");
+                navigate("/category");
+              }}
               className={menu === "app" ? "active" : ""}
             >
               Mobile App
@@ -90,22 +110,33 @@ export const Navbar = ({ setShowLogin }) => {
         </ul>
         <div className="navbar-right">
           {width >= 990 && (
-            <label className="switch">
-              <input
-                type="checkbox"
-                checked={isDarkTheme}
-                onChange={handleDarkTheme}
-              />
-              <span className="slider round"></span>
-            </label>
+            <div
+              className="slider-div"
+              style={{ color: isDarkTheme ? "white" : "gray" }}
+            >
+              {!isSearch&&<p>Dark Theme</p>}
+              <label className="switch">
+                <input
+                  type="checkbox"
+                  checked={isDarkTheme}
+                  onChange={handleDarkTheme}
+                />
+                <span className="slider round"></span>
+              </label>
+            </div>
           )}
-          <img
-            src={assets.search_icon}
-            className="search_icon"
-            onClick={() => navigate("/search")}
-          />
+          {!isSearch ? (
+            <img
+              src={assets.search_icon}
+              alt="search_icon"
+              className="search_icon"
+              onClick={() => setIsSearch(true)}
+            />
+          ) : (
+            <Search isSearch={isSearch} setIsSearch={setIsSearch} />
+          )}
           <div className="navbar-search-icon" onClick={() => navigate("/cart")}>
-            <img src={assets.basket_icon} />
+            <img src={assets.basket_icon} alt="basket_icon" />
             <div className="dot">{cartCount}</div>
           </div>
           {width >= 990 && (
@@ -119,7 +150,12 @@ export const Navbar = ({ setShowLogin }) => {
                   className="profile-icon"
                   onClick={() => setDropDown(!dropdown)}
                 >
-                  <img src={profile.picture} />
+                  <img
+                    src={
+                      profile.picture ? profile.picture : assets.profile_user
+                    }
+                    alt="profile_user"
+                  />
                 </div>
               )}
             </div>
@@ -133,7 +169,7 @@ export const Navbar = ({ setShowLogin }) => {
                 className="profile-name"
                 style={{ color: isDarkTheme ? "white" : "gray" }}
               >
-                Hi {profile.given_name} 👋
+                Hi {profile.given_name || profile.name} 👋
               </span>
               <ul className="profile-dropdown-list">
                 <li
@@ -142,15 +178,15 @@ export const Navbar = ({ setShowLogin }) => {
                     setDropDown(false);
                   }}
                 >
-                  <img src={assets.profile_icon_svg} alt="" />
+                  <img src={assets.profile_icon_svg} alt="profile_icon_svg" />
                   <span>Profile</span>
                 </li>
                 <li onClick={() => navigate("/profile")}>
-                  <img src={assets.store_svg} alt="" />
+                  <img src={assets.store_svg} alt="store_svg" />
                   <span>Orders</span>
                 </li>
                 <li onClick={logOut}>
-                  <img src={assets.logout_svg} alt="" />
+                  <img src={assets.logout_svg} alt="logout_svg" />
                   <span>Logout</span>
                 </li>
               </ul>

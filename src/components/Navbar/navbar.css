@@ -1,6 +1,6 @@
 .navbar {
   display: flex;
-  padding: 20px 0;
+  padding: 30px 0;
   justify-content: space-between;
   align-items: center;
   position: relative;
@@ -53,6 +53,13 @@
 }
 .search_icon{
   cursor: pointer;
+}
+.slider-div{
+  font-size: 19px;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  font-weight: 500;
 }
 .navbar-search-icon {
   position: relative;
@@ -137,7 +144,7 @@ input:checked + .slider:before {
 .profile-icon {
   height: 50px;
   width: 50px;
-  border: 2px solid tomato;
+  border: 3px solid tomato;
   border-radius: 50px;
   cursor: pointer;
 }

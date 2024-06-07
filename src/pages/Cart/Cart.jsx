@@ -8,7 +8,7 @@ const Cart = () => {
     cartItems,
     setCartItems,
     addToCart,
-    removeFromcart,
+    removeFromCart,
     cartCount,
     isDarkTheme,
     getTotalAmount,
@@ -37,14 +37,14 @@ const Cart = () => {
             return (
               <div>
                 <div className="cart-items-title cart-items-item"  style={isDarkTheme ? darkTheme : lightTheme}>
-                  <img src={items.image} alt="" />
+                  <img src={items.image} alt="image" />
                   <p>{items.name}</p>
                   <p>${items.price}</p>
                   <p>{cartItems[items._id]}</p>
                   <p>${items.price * cartItems[items._id]}</p>
                   <p
                     className="cross"
-                    onClick={() => removeFromcart(items._id)}
+                    onClick={() => removeFromCart(items._id)}
                   >
                     X
                   </p>

@@ -14,14 +14,14 @@ const Sidebar = ({ logOut, setSidebar, sidebar, profile, setShowLogin }) => {
       style={{ background: isDarkTheme ? "#1e1e1e" : "#fff" }}
     >
       <div className="sidebar-exit" onClick={() => setSidebar(!sidebar)}>
-        <img src={assets.sidebar_exit} alt="" />
+        <img src={assets.sidebar_exit} alt="sidebar_exit" />
       </div>
       {!profile ? (
         <></>
       ) : (
         <div>
           <div className="sidebar-profile">
-            <img src={profile.picture} className="sidebar-profile" />
+            <img src={profile.picture} alt="picture"className="sidebar-profile" />
           </div>
           <span
             className="sidebar-name"
@@ -39,7 +39,7 @@ const Sidebar = ({ logOut, setSidebar, sidebar, profile, setShowLogin }) => {
               setSidebar(false);
             }}
           >
-            <img src={assets.sidebar_profile_svg} alt="" />
+            <img src={assets.sidebar_profile_svg} alt="sidebar_profile_svg" />
             <span>Sign In</span>
           </li>
         ) : (
@@ -49,28 +49,28 @@ const Sidebar = ({ logOut, setSidebar, sidebar, profile, setShowLogin }) => {
               setSidebar(false);
             }}
           >
-            <img src={assets.sidebar_profile_svg} alt="" />
+            <img src={assets.sidebar_profile_svg} alt="sidebar_profile_svg" />
             <span>Profile</span>
           </li>
         )}
         <li>
-          <img src={assets.orders_svg} alt="" />
+          <img src={assets.orders_svg} alt="orders_svg" />
           <span>Orders</span>
         </li>
         <li>
-          <img src={assets.foods} alt="" />
+          <img src={assets.foods} alt="foods" />
           <span>Foods</span>
         </li>
         <li>
-          <img src={assets.category} alt="" />
+          <img src={assets.category} alt="category" />
           <span>Category</span>
         </li>
         <li>
-          <img src={assets.download} alt="" />
+          <img src={assets.download} alt="download" />
           <span>Mobile App</span>
         </li>
         <li>
-          <img src={assets.dark} alt="" />
+          <img src={assets.dark} alt="dark" />
           <span>Theme</span>
           <label className="switch">
             <input
@@ -88,7 +88,7 @@ const Sidebar = ({ logOut, setSidebar, sidebar, profile, setShowLogin }) => {
               setSidebar(false);
             }}
           >
-            <img src={assets.logout_svg} alt="" />
+            <img src={assets.logout_svg} alt="logout_svg" />
             <span>Logout</span>
           </li>
         )}

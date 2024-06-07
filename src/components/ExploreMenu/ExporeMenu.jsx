@@ -30,6 +30,7 @@ const ExporeMenu = ({ category, setCategory }) => {
               <img
                 onClick={() => setCategory(items.menu_name)}
                 src={items.menu_image}
+                alt="menu_image"
                 className={category === items.menu_name ? "active" : ""}
               />
               <p style={isDarkTheme ? darkTheme : lightTheme}  onClick={() => setCategory("All")}>

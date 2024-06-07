@@ -1,0 +1,4 @@
+User-agent: *
+Disallow:
+
+Sitemap: https://imaginative-chimera-bd0733.netlify.app/sitemap.xml
