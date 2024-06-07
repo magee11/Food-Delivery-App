@@ -5,7 +5,7 @@ import { StoreContext } from "../../context/StoreContext";
 
 const FoodItem = ({ item, index }) => {
   const { _id, name, price, description, image } = item;
-  const { cartItems, setCartItems, addToCart, removeFromcart } =
+  const { cartItems, setCartItems, addToCart, removeFromCart } =
     useContext(StoreContext);
   const DarkThemeDescription = {
     color: "white",
@@ -41,7 +41,7 @@ const FoodItem = ({ item, index }) => {
           >
             <img
               src={assets.remove_icon_red}
-              onClick={() => removeFromcart(_id)}
+              onClick={() => removeFromCart(_id)}
             />
             <p style={{ color: isDarkTheme ? "white" : "black" }}>
               {cartItems[_id]}

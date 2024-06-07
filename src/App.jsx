@@ -10,6 +10,8 @@ import SignInPage from "./components/SignInPage/SignInPage";
 import { StoreContext } from "./context/StoreContext";
 import Profile from "./pages/Profile/Profile";
 import Search from "./components/Search/Search";
+import { ToastContainer } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 function App() {
   const [showLogin, setShowLogin] = useState(false);
@@ -35,6 +37,7 @@ function App() {
           <Route path="/orders" element={<OrdersPage />} />
           <Route path="/profile" element={<Profile />} />
           <Route path="/search" element={<Search />} />
+          
         </Routes>
       </div>
       <Footer />

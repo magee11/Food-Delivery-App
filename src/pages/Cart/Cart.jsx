@@ -8,7 +8,7 @@ const Cart = () => {
     cartItems,
     setCartItems,
     addToCart,
-    removeFromcart,
+    removeFromCart,
     cartCount,
     isDarkTheme,
     getTotalAmount,
@@ -44,7 +44,7 @@ const Cart = () => {
                   <p>${items.price * cartItems[items._id]}</p>
                   <p
                     className="cross"
-                    onClick={() => removeFromcart(items._id)}
+                    onClick={() => removeFromCart(items._id)}
                   >
                     X
                   </p>

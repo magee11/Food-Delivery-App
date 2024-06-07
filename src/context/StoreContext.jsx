@@ -116,6 +116,7 @@ const StoreContextProvider = (props) => {
   };
 
   const removeFromCart = (itemId) => {
+    console.log(itemId,"removefromcart");
     setCartItems((prev) => {
       const updatedCart = { ...prev, [itemId]: prev[itemId] - 1 };
       if (updatedCart[itemId] <= 0) {
@@ -124,6 +125,7 @@ const StoreContextProvider = (props) => {
       return updatedCart;
     });
   };
+  
 
   const handleDarkTheme = () => {
     setIsDarkTheme(!isDarkTheme);
@@ -199,6 +201,9 @@ const StoreContextProvider = (props) => {
     }
   }, []);
 
+  const [isSearch, setIsSearch] = useState(false);
+  const [searchQuery,setSearchQuery]= useState("")
+
   const contextValue = {
     food_list,
     cartItems,
@@ -217,6 +222,10 @@ const StoreContextProvider = (props) => {
     setProfile,
     getLocation,
     setUserProfile,
+    isSearch,
+    searchQuery,
+    setSearchQuery,
+    setIsSearch,
   };
 
   return (

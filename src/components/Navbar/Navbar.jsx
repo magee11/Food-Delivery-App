@@ -6,9 +6,19 @@ import { Link } from "react-scroll";
 import { googleLogout } from "@react-oauth/google";
 import { useNavigate } from "react-router-dom";
 import Sidebar from "../Sidebar/Sidebar";
+import Search from "../Search/Search";
 export const Navbar = ({ setShowLogin }) => {
-  const { cartCount, handleDarkTheme, isDarkTheme, profile, setProfile } =
-    useContext(StoreContext);
+  const {
+    cartCount,
+    handleDarkTheme,
+    isDarkTheme,
+    profile,
+    setProfile,
+    isSearch,
+    setIsSearch,
+    searchQuery,
+    setSearchQuery,
+  } = useContext(StoreContext);
   const [menu, setMenu] = useState("home");
   const [dropdown, setDropDown] = useState(false);
   const [sidebar, setSidebar] = useState(false);
@@ -90,20 +100,30 @@ export const Navbar = ({ setShowLogin }) => {
         </ul>
         <div className="navbar-right">
           {width >= 990 && (
-            <label className="switch">
-              <input
-                type="checkbox"
-                checked={isDarkTheme}
-                onChange={handleDarkTheme}
-              />
-              <span className="slider round"></span>
-            </label>
+            <div
+              className="slider-div"
+              style={{ color: isDarkTheme ? "white" : "gray" }}
+            >
+              <p>Dark Theme</p>
+              <label className="switch">
+                <input
+                  type="checkbox"
+                  checked={isDarkTheme}
+                  onChange={handleDarkTheme}
+                />
+                <span className="slider round"></span>
+              </label>
+            </div>
           )}
-          <img
-            src={assets.search_icon}
-            className="search_icon"
-            onClick={() => navigate("/search")}
-          />
+          {!isSearch ? (
+            <img
+              src={assets.search_icon}
+              className="search_icon"
+              onClick={() => setIsSearch(true)}
+            />
+          ) : (
+            <Search isSearch={isSearch} setIsSearch={setIsSearch} />
+          )}
           <div className="navbar-search-icon" onClick={() => navigate("/cart")}>
             <img src={assets.basket_icon} />
             <div className="dot">{cartCount}</div>
@@ -119,7 +139,11 @@ export const Navbar = ({ setShowLogin }) => {
                   className="profile-icon"
                   onClick={() => setDropDown(!dropdown)}
                 >
-                  <img src={profile.picture} />
+                  <img
+                    src={
+                      profile.picture ? profile.picture : assets.profile_user
+                    }
+                  />
                 </div>
               )}
             </div>
@@ -133,7 +157,7 @@ export const Navbar = ({ setShowLogin }) => {
                 className="profile-name"
                 style={{ color: isDarkTheme ? "white" : "gray" }}
               >
-                Hi {profile.given_name} 👋
+                Hi {profile.given_name || profile.name} 👋
               </span>
               <ul className="profile-dropdown-list">
                 <li
