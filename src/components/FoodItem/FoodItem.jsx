@@ -27,7 +27,7 @@ const FoodItem = ({ item, index }) => {
       style={isDarkTheme ? darkTheme : lightTheme}
     >
       <div className="food-item-img-container">
-        <img src={image} className="food-item-image" />
+        <img src={image} className="food-item-image" alt="images" />
         {!cartItems[_id] ? (
           <img 
             className="add"

@@ -2,9 +2,8 @@ import React, { useContext, useState } from "react";
 import "./navbar.css";
 import { assets } from "../../assets/frontend_assets/assets";
 import { StoreContext } from "../../context/StoreContext";
-import { Link } from "react-scroll";
 import { googleLogout } from "@react-oauth/google";
-import { useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import Sidebar from "../Sidebar/Sidebar";
 import Search from "../Search/Search";
 export const Navbar = ({ setShowLogin }) => {
@@ -66,7 +65,7 @@ export const Navbar = ({ setShowLogin }) => {
           className="navbar-menu"
           style={isDarkTheme ? Darktheme : lightTheme}
         >
-          <Link to="header" smooth={true} duration={500}>
+          <Link to="/" smooth={true} duration={500}>
             <li
               onClick={() => setMenu("home")}
               className={menu === "home" ? "active" : ""}
@@ -74,7 +73,7 @@ export const Navbar = ({ setShowLogin }) => {
               Home
             </li>
           </Link>
-          <Link to="menu" smooth={true} duration={500}>
+          <Link to="/" smooth={true} duration={500}>
             <li
               onClick={() => {
                 setMenu("category");
@@ -85,7 +84,7 @@ export const Navbar = ({ setShowLogin }) => {
               Category
             </li>
           </Link>
-          <Link to="food" smooth={true} duration={500}>
+          <Link to="/" smooth={true} duration={500}>
             <li
               onClick={() => {
                 setMenu("foods");
@@ -96,7 +95,7 @@ export const Navbar = ({ setShowLogin }) => {
               Foods
             </li>
           </Link>
-          <Link to="app-download" smooth={true} duration={500}>
+          <Link to="/" smooth={true} duration={500}>
             <li
               onClick={() => {
                 setMenu("app");
