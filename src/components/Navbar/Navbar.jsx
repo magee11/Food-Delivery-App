@@ -56,6 +56,7 @@ export const Navbar = ({ setShowLogin }) => {
               <img
                 src={assets.logo}
                 className="logo"
+                alt="logo"
                 onClick={() => navigate("/")}
               />
             </div>
