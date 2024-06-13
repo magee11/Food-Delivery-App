@@ -6,6 +6,7 @@ import { StoreContext } from "../../context/StoreContext";
 const FoodItem = ({ item, index }) => {
   const { _id, name, price, description, image } = item;
   const { cartItems, setCartItems, addToCart, removeFromCart } =
+  const { cartItems, setCartItems, addToCart, removeFromCart } =
     useContext(StoreContext);
   const DarkThemeDescription = {
     color: "white",
