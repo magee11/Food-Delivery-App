@@ -3,6 +3,7 @@ import "./search.css";
 import { assets } from "../../assets/frontend_assets/assets";
 import { StoreContext } from "../../context/StoreContext";
 
+
 const Search = () => {
   const { isDarkTheme, setIsSearch, searchQuery, setSearchQuery } =
     useContext(StoreContext);

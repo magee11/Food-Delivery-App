@@ -55,6 +55,7 @@ function App() {
           <Route path="/orders" element={<OrdersPage />} />
           <Route path="/profile" element={<Profile />} />
           <Route path="/search" element={<Search />} />
+          
         </Routes>
       </div>
       <Footer />
