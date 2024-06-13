@@ -7,6 +7,7 @@ import { googleLogout } from "@react-oauth/google";
 import { useNavigate } from "react-router-dom";
 import Sidebar from "../Sidebar/Sidebar";
 import Search from "../Search/Search";
+import Search from "../Search/Search";
 export const Navbar = ({ setShowLogin }) => {
   const {
     cartCount,

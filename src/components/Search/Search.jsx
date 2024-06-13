@@ -8,6 +8,10 @@ const Search = () => {
   const { isDarkTheme, setIsSearch, searchQuery, setSearchQuery } =
     useContext(StoreContext);
 
+const Search = () => {
+  const { isDarkTheme, setIsSearch, searchQuery, setSearchQuery } =
+    useContext(StoreContext);
+
   return (
     <div className="search">
       <div className="search-field">
