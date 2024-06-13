@@ -1,7 +1,7 @@
 import React, { useContext } from "react";
 import "./header.css";
 import { StoreContext } from "../../context/StoreContext";
-import { Link } from "react-scroll";
+import { Link } from "react-router-dom";
 const Header = () => {
   const width = window.innerWidth;
   console.log(width, "width");
@@ -25,7 +25,7 @@ const Header = () => {
             ? "The app becomes a convenient one-stop-shop for users, allowing them to order all sorts of items, food or otherwise. Customers can get everything they need in one place, making the app even more useful to them, which in turn brings their loyalty. Examples: DoorDash, UberEats"
             : ""}
         </span>
-        <Link to="food" smooth={true} duration={500}>
+        <Link to="/" smooth={true} duration={500}>
           <button> View More</button>
         </Link>
       </div>
