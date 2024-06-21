@@ -22,6 +22,12 @@
   overflow-x: scroll;
   scroll-behavior: smooth;
 }
+.explore-menu-list {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+}
 .explore-menu-list::-webkit-scrollbar {
   display: none;
 }
@@ -60,7 +66,7 @@
 }
 
 @media (max-width: 900px) {
-  .clear{
+  .clear {
     margin: 0;
     border: 1px solid tomato;
     width: fit-content;
@@ -72,7 +78,7 @@
     bottom: 0;
     margin-top: 10px;
   }
-  .clear p{
+  .clear p {
     font-size: 12px;
   }
   .explore-menu-text {
@@ -83,19 +89,19 @@
     gap: 10px;
     position: relative;
   }
-  .explore-menu-list{
+  .explore-menu-list {
     gap: 15px;
     margin: 15px 0;
     font-size: 10px;
   }
   .explore-menu-list p {
     font-size: 12px;
-}
+  }
   .explore-menu-list img {
     height: 6rem;
     width: 6rem;
-}
-    .explore-menu hr{
-      background-color: rgb(230 230 230)
-    }
+  }
+  .explore-menu hr {
+    background-color: rgb(230 230 230);
+  }
 }
