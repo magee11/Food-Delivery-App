@@ -1,0 +1,138 @@
+.cart {
+  padding: 100px 0;
+}
+.cart-items-title {
+  display: grid;
+  grid-template-columns: 1fr 1.5fr 1fr 1fr 1fr 0.5fr;
+  align-items: center;
+  color: gray;
+  font-size: max(1vw, 12px);
+  font-size: large;
+}
+.cart-items-item {
+  margin: 10px 0;
+  color: black;
+}
+.cart-items-item img {
+  width: 100px;
+}
+
+.cart hr {
+  height: 2px;
+  background-color: #e2e2e2;
+  border: none;
+}
+.cart .cross {
+  cursor: pointer;
+}
+
+.cart-bottom {
+  margin-top: 80px;
+  display: flex;
+  justify-content: space-between;
+  gap: max(12vw, 20px);
+}
+
+.cart-total {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+.cart-total-details {
+  display: flex;
+  justify-content: space-between;
+  color: #555;
+}
+.cart-total hr {
+  margin: 10px 0;
+}
+.cart-total button {
+  border: none;
+  color: white;
+  background-color: tomato;
+  width: max(15vw, 200px);
+  padding: 13px;
+  border-radius: 5px;
+  cursor: pointer;
+  font-size: 15px;
+  font-weight: 500;
+}
+
+.cart-promotion {
+  flex: 1;
+}
+.cart-promotion p {
+  color: #555;
+  font-size: 18px;
+}
+
+.cart-promotion-input {
+  margin-top: 10px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background-color: #e3e3e3;
+  border-radius: 5px;
+}
+.cart-promotion-input input {
+  outline: none;
+  border: none;
+  background: transparent;
+  padding-left: 10px;
+  font-size: 16px;
+}
+
+.cart-promotion-input button {
+  width: max(10vw, 150px);
+  padding: 12px 5px;
+  background-color: black;
+  border: none;
+  color: white;
+  border: 5px;
+  cursor: pointer;
+  font-weight: 500;
+  font-size: 16px;
+}
+.line {
+  height: 2px;
+  background: gray;
+}
+
+@media (max-width: 900px) {
+  .cart{
+    padding-top: 40px;
+    padding-bottom: 30px;
+  }
+  .cart-bottom {
+    margin-top: 30px;
+    flex-direction: column-reverse;
+  }
+  .cart-items-title {
+    font-size: 14px;
+    column-gap: 15px;
+  }
+
+  .cart-promotion {
+    justify-content: start;
+  }
+  .cart-promotion p{
+    font-size: 15px;
+  }
+  .cart-promotion-input input{
+    font-size: 14px;
+  }
+  .cart-promotion button{
+    font-size: 14px;
+  }
+  .cart-total{
+    font-size: 14px;
+  }
+  .cart-total button{
+    font-size: 12px;
+  }
+  .cart-items-item img {
+    width: 65px;
+    border-radius: 5px;
+  }
+}
