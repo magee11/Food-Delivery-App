@@ -6,7 +6,7 @@ import { assets } from "../../assets/frontend_assets/assets";
 import { StoreContext } from "../../context/StoreContext";
 
 const GoogleLoginComponent = ({ setShowLogin }) => {
-  const { setProfile, profile } = useContext(StoreContext);
+  const { setProfile } = useContext(StoreContext);
   const [user, setUser] = useState(null);
   const login = useGoogleLogin({
     onSuccess: (codeResponse) => setUser(codeResponse),
@@ -26,22 +26,16 @@ const GoogleLoginComponent = ({ setShowLogin }) => {
         )
         .then((res) => {
           setProfile(res.data);
-          console.log(res.data);
           setShowLogin(false);
         })
         .catch((err) => console.log(err));
     }
-    console.log(profile, "Profile");
-    console.log(user, "user");
   }, [user]);
-
-  console.log(profile, "Profile");
-  console.log(user, "user");
 
   return (
     <div className="google-signin">
-      <button onClick={login}>
-        <img src={assets.google_icon} alt="google_icon"/> Sign in with Google
+      <button type="button" onClick={() => login()}>
+        <img src={assets.google_icon} alt="" /> Continue with Google
       </button>
     </div>
   );

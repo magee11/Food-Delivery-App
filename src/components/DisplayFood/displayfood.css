@@ -1,24 +1,56 @@
-.food-display{
-    margin-top: 30px;
-}
-.food-display h2{
-    font-weight: 500;
-    font-size: max(2vw,22px);
-}
-.food-display-items{
-    display: grid;
-    grid-template-columns: repeat(auto-fill,minmax(300px,1fr));
-    margin-top:30px ;
-    gap: 30px;
-    row-gap: 100px;
+.food-display {
+  margin-top: clamp(32px, 5vw, 56px);
 }
 
-@media (max-width:900px) {
-    .food-display{
-        margin-top: 20px;
-    }
-    .food-display-items {
-        grid-template-columns: repeat(auto-fill,minmax(100px,1fr));
-        row-gap: 30px;
-    }
+.food-display-head {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-end;
+  gap: 16px;
+  flex-wrap: wrap;
+}
+
+.food-display-filters {
+  display: flex;
+  gap: 8px;
+  overflow-x: auto;
+  scrollbar-width: none;
+  max-width: 100%;
+}
+.food-display-filters::-webkit-scrollbar {
+  display: none;
+}
+.food-display-filters button {
+  padding: 8px 16px;
+  border-radius: 999px;
+  border: 1.5px solid var(--border);
+  background: var(--surface);
+  font-size: 14px;
+  font-weight: 600;
+  white-space: nowrap;
+  transition: all 0.2s;
+}
+.food-display-filters button.active {
+  background: var(--text);
+  border-color: var(--text);
+  color: var(--bg);
+}
+
+.food-display-items {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
+  gap: clamp(14px, 2vw, 28px);
+  margin-top: 24px;
+}
+
+.food-display-empty {
+  margin-top: 32px;
+  color: var(--text-muted);
+}
+
+@media (max-width: 560px) {
+  .food-display-items {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 12px;
+  }
 }

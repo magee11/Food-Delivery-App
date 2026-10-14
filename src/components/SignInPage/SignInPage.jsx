@@ -3,12 +3,13 @@ import "./signinpage.css";
 import { StoreContext } from "../../context/StoreContext";
 import GoogleLoginComponent from "../GoogleLogin/GoogleLogin";
 import axios from "axios";
-import { ToastContainer, toast } from "react-toastify";
-import "react-toastify/dist/ReactToastify.css";
+import { toast } from "react-toastify";
+import Logo from "../Logo/Logo";
+import Icon from "../Icon/Icon";
 
 const SignInPage = ({ setShowLogin }) => {
   const [currState, setCurrState] = useState("Login");
-  const { isDarkTheme, setProfile } = useContext(StoreContext);
+  const { setProfile } = useContext(StoreContext);
   const [userData, setUserData] = useState({
     name: "",
     email: "",
@@ -53,32 +54,22 @@ const SignInPage = ({ setShowLogin }) => {
     }
   };
 
-  const darkTheme = {
-    color: "white",
-    background: "rgb(52 51 51)",
-  };
-
-  const lightTheme = {
-    backgroundColor: "#fff",
-    color: "black",
-  };
-
   return (
-    <div className="login-popup">
+    <div className="login-popup" onClick={() => setShowLogin(false)}>
       <form
         className="login-popup-container"
-        style={isDarkTheme ? darkTheme : lightTheme}
+        onClick={(e) => e.stopPropagation()}
         onSubmit={(e) => handleSubmit(e)}
       >
-
-        <div
-          className="login-popup-title"
-          style={{ color: isDarkTheme ? "white" : "black" }}
-        >
-          <h1 style={{ color: isDarkTheme ? "white" : "black" }}>
-            {currState}
-          </h1>
-          <p onClick={() => setShowLogin(false)}>X</p>
+        <div className="login-popup-title">
+          <Logo size={30} />
+          <button type="button" className="icon-btn" onClick={() => setShowLogin(false)} aria-label="Close">
+            <Icon name="close" />
+          </button>
+        </div>
+        <div className="login-popup-heading">
+          <h2>{currState === "Login" ? "Welcome back" : "Create your account"}</h2>
+          <p>{currState === "Login" ? "Log in to track orders and save favourites." : "Join Biteway and get 20% off your first order."}</p>
         </div>
         <div className="login-popup-inputs">
           {currState === "Login" ? (
@@ -120,12 +111,12 @@ const SignInPage = ({ setShowLogin }) => {
             required
           />
         </div>
-        <button className="loginButton">
+        <button className="btn btn-primary loginButton">
           {currState === "Sign Up" ? "Create Account" : "Login"}
         </button>
 
         <div className="login-popup-condition">
-          <input type="checkbox" />
+          <input type="checkbox" required />
           <p>By continuing, I agree to the terms of use & privacy policy </p>
         </div>
         {currState === "Login" ? (
@@ -139,6 +130,7 @@ const SignInPage = ({ setShowLogin }) => {
             <span onClick={() => setCurrState("Login")}>Login here</span>
           </p>
         )}
+        <div className="login-divider"><span>or</span></div>
         <GoogleLoginComponent setShowLogin={setShowLogin} />
       </form>
     </div>

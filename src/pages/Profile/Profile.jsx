@@ -1,13 +1,14 @@
 import React, { useContext, useEffect } from "react";
 import "./profile.css";
 import { StoreContext } from "../../context/StoreContext";
+import { toast } from "react-toastify";
+import Icon from "../../components/Icon/Icon";
 
 const ProfilePage = () => {
   const {
     userProfile,
     updateProfile,
     setProfileImage,
-    isDarkTheme,
     getLocation,
     setUserProfile,
   } = useContext(StoreContext);
@@ -29,29 +30,34 @@ const ProfilePage = () => {
     }
     // Save filtered profile
     localStorage.setItem("userProfile", JSON.stringify(profileToSave));
+    toast.success("Profile saved");
   };
 
   const handleImageChange = (e) => {
     const file = e.target.files[0];
+    if (!file) return;
     setProfileImage(file, URL.createObjectURL(file));
   };
 
   return (
     <div
       className="profile-container"
-      style={{ background: isDarkTheme ? "#101010" : "white" }}
     >
       <div
         className="profile-sidebar"
-        style={{ background: isDarkTheme ? "#101010" : "white" }}
       >
         <div className="profile-picture">
-          <img src={userProfile?.preview} alt="Profile Preview" />
+          {userProfile?.preview ? (
+            <img src={userProfile.preview} alt="Profile" referrerPolicy="no-referrer" />
+          ) : (
+            <Icon name="user" size={56} strokeWidth={1.4} />
+          )}
         </div>
         <label className="file-input-label">
           Upload Profile
           <input
             type="file"
+            accept="image/*"
             onChange={handleImageChange}
             className="file-input"
           />
@@ -60,9 +66,8 @@ const ProfilePage = () => {
 
       <div
         className="profile-main"
-        style={{ background: isDarkTheme ? "#101010" : "white" }}
       >
-        <h1>Profile Details</h1>
+        <h1 className="section-title">Profile details</h1>
         <div className="profile-info">
           <div className="input-row">
             <input
@@ -148,8 +153,10 @@ const ProfilePage = () => {
           </div>
         </div>
         <div className="profile-actions">
-          <button onClick={getLocation}> Fetch Location </button>
-          <button onClick={saveProfile}>Save Profile</button>
+          <button className="btn btn-ghost" onClick={getLocation}>
+            <Icon name="pin" size={18} /> Use my location
+          </button>
+          <button className="btn btn-primary" onClick={saveProfile}>Save profile</button>
         </div>
       </div>
     </div>

@@ -1,47 +1,34 @@
-import React, { useContext } from "react";
+import React from "react";
 import "./exploremenu.css";
 import { menu_list } from "../../assets/frontend_assets/assets";
-import { StoreContext } from "../../context/StoreContext";
+
 const ExporeMenu = ({ category, setCategory }) => {
-  const { isDarkTheme } = useContext(StoreContext);
-  const darkTheme = {
-    color: "#fff",
-    transition: ".8s",
-  };
-  const lightTheme = {
-    color: "black",
-    transition: ".8s",
-  };
+  const toggle = (name) => setCategory((prev) => (prev === name ? "All" : name));
+
   return (
-    <div className="explore-menu" name="explore-menu">
-      <h2 style={isDarkTheme ? darkTheme : lightTheme}>Explore Menu</h2>
-      <span
-        className="explore-menu-text"
-        style={isDarkTheme ? darkTheme : lightTheme}
-      >
-        The app becomes a convenient one-stop-shop for users, allowing them to
-        order all sorts of items, food or otherwise. Customers can get food or
-        otherwise allowing them to order all sorts of items
-      </span>
+    <section className="explore-menu" id="explore-menu">
+      <h2 className="section-title">What are you craving?</h2>
+      <p className="section-sub">Pick a category. Tap it again to see everything.</p>
       <div className="explore-menu-list">
-        {menu_list?.map((items, index) => {
-          return (
-            <div className="explore-menu-list-items" key={index}>
-              <img
-                onClick={() => setCategory(items.menu_name)}
-                src={items.menu_image}
-                alt="menu_image"
-                className={category === items.menu_name ? "active" : ""}
-              />
-              <p style={isDarkTheme ? darkTheme : lightTheme}  onClick={() => setCategory("All")}>
-                {items.menu_name}
-              </p>
-            </div>
-          );
-        })}
+        <button
+          className={`explore-menu-item ${category === "All" ? "active" : ""}`}
+          onClick={() => setCategory("All")}
+        >
+          <span className="explore-menu-all">All</span>
+          <p>Everything</p>
+        </button>
+        {menu_list.map((item) => (
+          <button
+            key={item.menu_name}
+            className={`explore-menu-item ${category === item.menu_name ? "active" : ""}`}
+            onClick={() => toggle(item.menu_name)}
+          >
+            <img src={item.menu_image} alt="" loading="lazy" />
+            <p>{item.menu_name}</p>
+          </button>
+        ))}
       </div>
-      <hr />
-    </div>
+    </section>
   );
 };
 

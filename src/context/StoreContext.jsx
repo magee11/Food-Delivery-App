@@ -1,4 +1,5 @@
-import React, { createContext, useEffect, useState } from "react";
+import React, { createContext, useCallback, useEffect, useState } from "react";
+import { computeBill } from "../utils/bill";
 import { food_list } from "../assets/frontend_assets/assets";
 
 export const StoreContext = createContext(null);
@@ -77,6 +78,7 @@ const StoreContextProvider = (props) => {
 
   useEffect(() => {
     localStorage.setItem("isDarkTheme", isDarkTheme);
+    document.documentElement.dataset.theme = isDarkTheme ? "dark" : "light";
   }, [isDarkTheme]);
 
   useEffect(() => {
@@ -116,7 +118,6 @@ const StoreContextProvider = (props) => {
   };
 
   const removeFromCart = (itemId) => {
-    console.log(itemId,"removefromcart");
     setCartItems((prev) => {
       const updatedCart = { ...prev, [itemId]: prev[itemId] - 1 };
       if (updatedCart[itemId] <= 0) {
@@ -127,6 +128,14 @@ const StoreContextProvider = (props) => {
   };
   
 
+  const deleteFromCart = (itemId) => {
+    setCartItems((prev) => {
+      const updatedCart = { ...prev };
+      delete updatedCart[itemId];
+      return updatedCart;
+    });
+  };
+
   const handleDarkTheme = () => {
     setIsDarkTheme(!isDarkTheme);
   };
@@ -136,7 +145,7 @@ const StoreContextProvider = (props) => {
     for (const item in cartItems) {
       if (cartItems[item] > 0) {
         let itemInfo = food_list.find((product) => product._id === item);
-        totalAmount += itemInfo.price * cartItems[item];
+        if (itemInfo) totalAmount += itemInfo.price * cartItems[item];
       }
     }
     return totalAmount;
@@ -201,6 +210,53 @@ const StoreContextProvider = (props) => {
     }
   }, []);
 
+  // Dish shown in the product modal (null when closed).
+  const [selectedFood, setSelectedFood] = useState(null);
+  const openFood = useCallback((id) => setSelectedFood(food_list.find((f) => f._id === id) || null), []);
+  const closeFood = useCallback(() => setSelectedFood(null), []);
+
+  const [appliedPromo, setAppliedPromo] = useState(() => localStorage.getItem("appliedPromo") || "");
+  useEffect(() => {
+    localStorage.setItem("appliedPromo", appliedPromo);
+  }, [appliedPromo]);
+  const getBill = () => computeBill(getTotalAmount(), appliedPromo);
+
+  const [orders, setOrders] = useState(() => {
+    try {
+      return JSON.parse(localStorage.getItem("orders")) || [];
+    } catch {
+      return [];
+    }
+  });
+  useEffect(() => {
+    localStorage.setItem("orders", JSON.stringify(orders));
+  }, [orders]);
+
+  // Snapshot the cart into an order, then empty the cart. Returns the new order.
+  const placeOrder = ({ address, payment }) => {
+    const items = food_list
+      .filter((f) => cartItems[f._id] > 0)
+      .map(({ _id, name, price, image, veg }) => ({ _id, name, price, image, veg, qty: cartItems[_id] }));
+    const order = {
+      id: "BW" + Date.now().toString(36).toUpperCase().slice(-6),
+      items,
+      bill: getBill(),
+      promo: appliedPromo,
+      address,
+      payment,
+      createdAt: Date.now(),
+      rating: null,
+    };
+    setOrders((prev) => [order, ...prev]);
+    setCartItems({});
+    setAppliedPromo("");
+    return order;
+  };
+
+  const rateOrder = (orderId, rating) => {
+    setOrders((prev) => prev.map((o) => (o.id === orderId ? { ...o, rating } : o)));
+  };
+
   const [isSearch, setIsSearch] = useState(false);
   const [searchQuery,setSearchQuery]= useState("")
 
@@ -210,6 +266,7 @@ const StoreContextProvider = (props) => {
     setCartItems,
     addToCart,
     removeFromCart,
+    deleteFromCart,
     cartCount,
     getTotalAmount,
     handleDarkTheme,
@@ -226,6 +283,15 @@ const StoreContextProvider = (props) => {
     searchQuery,
     setSearchQuery,
     setIsSearch,
+    selectedFood,
+    openFood,
+    closeFood,
+    appliedPromo,
+    setAppliedPromo,
+    getBill,
+    orders,
+    placeOrder,
+    rateOrder,
   };
 
   return (

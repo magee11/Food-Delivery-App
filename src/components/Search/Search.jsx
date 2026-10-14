@@ -1,32 +1,41 @@
-import React, { useContext, useState } from "react";
+import React, { useContext } from "react";
 import "./search.css";
-import { assets } from "../../assets/frontend_assets/assets";
 import { StoreContext } from "../../context/StoreContext";
+import { useLocation, useNavigate } from "react-router-dom";
+import Icon from "../Icon/Icon";
 
+const Search = ({ autoFocus = true }) => {
+  const { setIsSearch, searchQuery, setSearchQuery } = useContext(StoreContext);
+  const navigate = useNavigate();
+  const { pathname } = useLocation();
 
-const Search = () => {
-  const { isDarkTheme, setIsSearch, searchQuery, setSearchQuery } =
-    useContext(StoreContext);
+  const onChange = (e) => {
+    setSearchQuery(e.target.value);
+    // Results render on the home page.
+    if (pathname !== "/") navigate("/");
+  };
+
+  const close = () => {
+    setIsSearch(false);
+    setSearchQuery("");
+  };
+
   return (
     <div className="search">
-      <div className="search-field">
-        <input
-          type="text"
-          className="search-input"
-          onChange={(e) => setSearchQuery(e.target.value)}
-          value={searchQuery}
-          style={{ color: isDarkTheme ? "white" : "black" }}
-        />
-        <img
-          src={assets.search_icon}
-          className="close-icon"
-          alt="search_icon"
-          onClick={() => {
-            setIsSearch(false);
-            setSearchQuery("")
-          }}
-        />
-      </div>
+      <Icon name="search" size={18} className="search-lead" />
+      <input
+        type="search"
+        className="search-input"
+        placeholder="Search paneer, cake, pasta…"
+        onChange={onChange}
+        onKeyDown={(e) => e.key === "Escape" && close()}
+        value={searchQuery}
+        autoFocus={autoFocus}
+        aria-label="Search dishes"
+      />
+      <button className="search-close" onClick={close} aria-label="Close search">
+        <Icon name="close" size={16} />
+      </button>
     </div>
   );
 };

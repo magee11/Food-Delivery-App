@@ -1,0 +1,534 @@
+.checkout {
+  padding: 20px 0 48px;
+}
+
+.co-back {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  margin-bottom: 10px;
+  font-weight: 600;
+  font-size: 14px;
+  color: var(--text-muted);
+}
+.co-back:hover {
+  color: var(--brand);
+}
+
+/* Stepper */
+.co-steps {
+  list-style: none;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-top: 16px;
+  font-weight: 600;
+  font-size: 14px;
+  color: var(--text-muted);
+}
+.co-steps li {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  white-space: nowrap;
+}
+.co-steps li + li::before {
+  content: "";
+  width: 40px;
+  height: 2px;
+  background: var(--border);
+  margin-right: 2px;
+}
+.co-steps li span {
+  width: 26px;
+  height: 26px;
+  border-radius: 50%;
+  display: grid;
+  place-items: center;
+  border: 2px solid var(--border);
+  font-size: 13px;
+  font-weight: 800;
+  transition: all 0.3s;
+}
+.co-steps li.current {
+  color: var(--text);
+}
+.co-steps li.current span {
+  border-color: var(--brand);
+  background: var(--brand);
+  color: #fff;
+}
+.co-steps li.done span {
+  border-color: var(--veg);
+  background: var(--veg);
+  color: #fff;
+}
+
+.co-layout {
+  display: grid;
+  grid-template-columns: 1.5fr 1fr;
+  gap: 24px;
+  align-items: start;
+  margin-top: 20px;
+}
+/* Grid items default to min-width:auto, so the no-wrap address line would
+   stretch the column past the viewport instead of truncating. */
+.co-layout > * {
+  min-width: 0;
+}
+
+.co-card,
+.co-summary {
+  padding: 24px;
+  border-radius: var(--radius);
+  background: var(--surface);
+  border: 1px solid var(--border);
+}
+.co-card {
+  animation: riseIn 0.35s both;
+}
+.co-card h2 {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 19px;
+  font-weight: 800;
+  margin-bottom: 18px;
+}
+.co-card h2 svg {
+  color: var(--brand);
+}
+
+.co-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 14px;
+}
+.co-span {
+  grid-column: 1 / -1;
+}
+
+.co-field {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  font-size: 13px;
+  font-weight: 600;
+  color: var(--text-muted);
+}
+.co-field input {
+  padding: 13px 14px;
+  border-radius: var(--radius-sm);
+  border: 1.5px solid var(--border);
+  background: var(--bg);
+  outline: none;
+  font-size: 15px;
+  font-weight: 500;
+  transition: border-color 0.2s;
+}
+.co-field input:focus {
+  border-color: var(--brand);
+}
+.co-field.has-error input {
+  border-color: var(--nonveg);
+}
+.co-field small {
+  color: var(--nonveg);
+  font-weight: 600;
+}
+
+.co-submit {
+  width: 100%;
+  margin-top: 22px;
+  padding: 16px;
+  font-size: 16px;
+}
+
+.co-address-summary {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 14px;
+  margin-bottom: 22px;
+  border-radius: var(--radius-sm);
+  background: var(--surface-2);
+}
+.co-address-summary > svg {
+  color: var(--brand);
+  flex-shrink: 0;
+}
+.co-address-summary div {
+  flex: 1;
+  min-width: 0;
+  display: flex;
+  flex-direction: column;
+  font-size: 14px;
+}
+.co-address-summary span {
+  color: var(--text-muted);
+  font-size: 13px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+.co-address-summary button {
+  color: var(--brand);
+  font-weight: 700;
+  font-size: 14px;
+}
+
+.co-demo-note {
+  margin: -6px 0 16px;
+  padding: 10px 14px;
+  border-radius: 10px;
+  background: color-mix(in srgb, #4a7dff 12%, transparent);
+  color: #4a7dff;
+  font-size: 13px;
+  font-weight: 600;
+}
+
+.co-methods {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+.co-method {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  padding: 14px 16px;
+  border-radius: var(--radius-sm);
+  border: 1.5px solid var(--border);
+  text-align: left;
+  transition: border-color 0.2s, background-color 0.2s;
+}
+.co-method strong {
+  display: block;
+  font-size: 15px;
+}
+.co-method small {
+  color: var(--text-muted);
+  font-size: 12px;
+}
+.co-method.active {
+  border-color: var(--brand);
+  background: var(--brand-soft);
+}
+.co-radio {
+  width: 20px;
+  height: 20px;
+  border-radius: 50%;
+  border: 2px solid var(--border);
+  flex-shrink: 0;
+  display: grid;
+  place-items: center;
+}
+.co-method.active .co-radio {
+  border-color: var(--brand);
+}
+.co-method.active .co-radio::after {
+  content: "";
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  background: var(--brand);
+  animation: fadeIn 0.2s both;
+}
+
+/* Animated card preview */
+.co-card-pay {
+  margin-top: 20px;
+  animation: riseIn 0.3s both;
+}
+.co-cc {
+  position: relative;
+  width: min(340px, 100%);
+  aspect-ratio: 1.586;
+  margin: 0 auto 22px;
+  perspective: 1000px;
+  transform-style: preserve-3d;
+  transition: transform 0.6s cubic-bezier(0.4, 0.2, 0.2, 1);
+}
+.co-cc.flipped {
+  transform: rotateY(180deg);
+}
+.co-cc-face {
+  position: absolute;
+  inset: 0;
+  border-radius: 18px;
+  padding: 20px;
+  color: #fff;
+  backface-visibility: hidden;
+  -webkit-backface-visibility: hidden;
+  background:
+    radial-gradient(80% 120% at 100% 0%, rgba(255, 255, 255, 0.25), transparent 60%),
+    linear-gradient(135deg, #2b2730, #17151a 60%, #ff5a1f 140%);
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.25);
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+.co-cc-back {
+  transform: rotateY(180deg);
+  padding: 20px 0;
+  justify-content: flex-start;
+  gap: 18px;
+}
+.co-cc-top {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+.co-cc-chip {
+  width: 40px;
+  height: 30px;
+  border-radius: 6px;
+  background: linear-gradient(135deg, #f7d67a, #c9a13b);
+}
+.co-cc-brand {
+  font-weight: 800;
+  font-style: italic;
+  letter-spacing: 0.04em;
+}
+.co-cc-number {
+  font-size: clamp(17px, 4.6vw, 21px);
+  letter-spacing: 0.12em;
+  font-family: ui-monospace, "SFMono-Regular", Menlo, monospace;
+}
+.co-cc-bottom {
+  display: flex;
+  justify-content: space-between;
+  font-size: 13px;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  opacity: 0.9;
+}
+.co-cc-strip {
+  height: 42px;
+  background: #0b0a0c;
+}
+.co-cc-cvv {
+  margin: 0 20px;
+  align-self: flex-end;
+  padding: 6px 12px;
+  border-radius: 6px;
+  background: #fff;
+  color: #17151a;
+  font-family: ui-monospace, Menlo, monospace;
+  font-weight: 700;
+}
+.co-testcard {
+  margin-top: 12px;
+  font-size: 13px;
+  font-weight: 700;
+  color: var(--brand);
+}
+
+.co-upi {
+  margin-top: 20px;
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+  animation: riseIn 0.3s both;
+}
+.co-upi-apps {
+  display: flex;
+  gap: 10px;
+}
+.co-upi-apps button {
+  flex: 1;
+  padding: 12px 8px;
+  border-radius: var(--radius-sm);
+  border: 1.5px solid var(--border);
+  font-weight: 700;
+  transition: border-color 0.2s;
+}
+.co-upi-apps button:hover {
+  border-color: var(--brand);
+}
+.co-cod {
+  margin-top: 18px;
+  padding: 14px;
+  border-radius: var(--radius-sm);
+  background: var(--surface-2);
+  line-height: 1.5;
+  animation: riseIn 0.3s both;
+}
+
+/* Summary */
+.co-summary {
+  position: sticky;
+  top: calc(var(--nav-h) + 16px);
+}
+.co-summary h3 {
+  font-size: 17px;
+  font-weight: 800;
+}
+.co-summary ul {
+  list-style: none;
+  margin-top: 14px;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  max-height: 260px;
+  overflow-y: auto;
+}
+.co-summary li {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  font-size: 14px;
+}
+.co-summary li img {
+  width: 46px;
+  height: 46px;
+  border-radius: 10px;
+  object-fit: cover;
+}
+.co-summary li span {
+  flex: 1;
+  font-weight: 600;
+}
+.co-summary li em {
+  font-style: normal;
+  color: var(--text-muted);
+}
+.co-bill {
+  margin-top: 16px;
+  padding-top: 16px;
+  border-top: 1px dashed var(--border);
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+.co-bill p {
+  display: flex;
+  justify-content: space-between;
+  color: var(--text-muted);
+  font-size: 14px;
+}
+.co-discount {
+  color: var(--veg) !important;
+}
+.co-total {
+  margin-top: 6px;
+  color: var(--text) !important;
+  font-size: 18px !important;
+  font-weight: 800;
+}
+
+/* Processing overlay */
+.co-processing {
+  position: fixed;
+  inset: 0;
+  z-index: 400;
+  display: grid;
+  place-items: center;
+  padding: 24px;
+  background: rgba(10, 8, 12, 0.6);
+  backdrop-filter: blur(6px);
+  animation: fadeIn 0.2s both;
+}
+.co-processing-card {
+  width: min(340px, 100%);
+  padding: 32px 24px;
+  border-radius: 24px;
+  background: var(--surface);
+  text-align: center;
+  box-shadow: var(--shadow-lg);
+  animation: riseIn 0.3s both;
+}
+.co-spinner {
+  position: relative;
+  width: 72px;
+  height: 72px;
+  margin: 0 auto 18px;
+}
+.co-spinner span {
+  position: absolute;
+  inset: 0;
+  border-radius: 50%;
+  border: 5px solid transparent;
+  border-top-color: var(--brand);
+  animation: spin 0.9s linear infinite;
+}
+.co-spinner span + span {
+  inset: 12px;
+  border-top-color: transparent;
+  border-bottom-color: var(--star);
+  animation-direction: reverse;
+  animation-duration: 1.3s;
+}
+.co-processing-card strong {
+  font-size: 28px;
+  font-weight: 800;
+}
+.co-processing-card p {
+  margin-top: 6px;
+  font-weight: 600;
+  color: var(--text-muted);
+  min-height: 24px;
+  animation: riseIn 0.3s both;
+}
+.co-processing-bar {
+  height: 6px;
+  margin: 18px 0 12px;
+  border-radius: 6px;
+  background: var(--surface-2);
+  overflow: hidden;
+}
+.co-processing-bar span {
+  display: block;
+  height: 100%;
+  background: var(--brand);
+  border-radius: inherit;
+  transition: width 0.8s ease;
+}
+.co-processing-card small {
+  color: var(--text-muted);
+  font-size: 12px;
+}
+
+@keyframes spin {
+  to { transform: rotate(360deg); }
+}
+
+@media (max-width: 900px) {
+  .co-layout {
+    grid-template-columns: 1fr;
+  }
+  .co-summary {
+    position: static;
+  }
+  .co-summary ul {
+    max-height: 160px;
+  }
+}
+@media (max-width: 768px) {
+  /* Checkout is a focused flow: no tab bar, so drop the space reserved for it. */
+  body:has(.checkout) {
+    padding-bottom: env(safe-area-inset-bottom);
+  }
+  .co-submit {
+    position: sticky;
+    bottom: max(12px, env(safe-area-inset-bottom));
+    z-index: 5;
+  }
+}
+
+@media (max-width: 480px) {
+  .co-card,
+  .co-summary {
+    padding: 18px;
+  }
+  .co-steps {
+    gap: 8px;
+    font-size: 13px;
+  }
+  .co-grid {
+    grid-template-columns: 1fr;
+  }
+  .co-steps li + li::before {
+    width: 20px;
+  }
+}

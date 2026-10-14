@@ -1,98 +1,52 @@
 .search {
   display: flex;
-  justify-content: center;
-  position: relative;
-  z-index: 1;
-}
-.search img {
-  height: 25px;
-  width: 25px;
-  cursor: pointer;
-}
-.close-right {
-  display: flex;
-  top: 7rem;
-  right: 10rem;
-  position: fixed;
-}
-.search input {
-  z-index: 1;
-  width: 85%;
-  border: none;
-  margin: 0 15px;
-  height: 100%;
-  border: 0px solid;
-  font-size: 16px;
-  background: transparent;
-}
-
-.search input:focus {
-  outline: none;
-}
-
-.search-field {
-  width: 20rem;
-  border-radius: 50px;
-  border: 3px solid tomato;
-  height: 3rem;
-  display: flex;
-  padding: 10px;
-  justify-content: center;
   align-items: center;
+  gap: 8px;
+  height: 44px;
+  width: min(340px, 100%);
+  padding: 0 6px 0 14px;
+  border-radius: 999px;
+  background: var(--surface);
+  border: 1.5px solid var(--border);
+  animation: fadeIn 0.2s both;
+  transition: border-color 0.2s;
 }
-.suggestion {
-  position: absolute;
-  bottom: 5rem;
-  right: 35rem;
-  width: 30%;
-  z-index: -20;
-  height: 20rem;
-  color: black;
-  display: flex;
-  flex-direction: column;
-  gap: 15px;
-  padding: 20px 50px;
+.search:focus-within {
+  border-color: var(--brand);
 }
-.suggestion-items {
-  cursor: pointer;
-  font-size: 18px;
-  font-weight: 500;
+.search-lead {
+  color: var(--text-muted);
+  flex-shrink: 0;
+}
+.search-input {
+  flex: 1;
+  min-width: 0;
+  border: none;
+  outline: none;
+  background: transparent;
+  font-size: 15px;
+}
+.search-input::-webkit-search-cancel-button {
+  display: none;
+}
+.search-close {
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  display: grid;
+  place-items: center;
+  color: var(--text-muted);
+  background: var(--surface-2);
+  flex-shrink: 0;
 }
 
-@media (max-width: 900px) {
-  .search-field {
-    width: 10rem;
-    border-radius: 50px;
-    border: 2px solid tomato;
-    height: 2rem;
-    display: flex;
-    padding: 5px 15px 5px 0px;
-    justify-content: center;
-    align-items: center;
+@media (max-width: 768px) {
+  .search {
+    width: 100%;
   }
-  .suggestion {
-    position: absolute;
-    bottom: 3rem;
-    right: 6rem;
-    width: 61%;
-    z-index: -20;
-    height: 20rem;
-    color: black;
-    display: flex;
-    flex-direction: column;
-    gap: 15px;
-    padding: 20px 30px;
-  }
-  .suggestion-items {
-    cursor: pointer;
-    font-size: 14px;
-    font-weight: 500;
-  }
-  .search input {
-    font-size: 10px;
-  }
-  .search img{
-    height: 20px;
-    width: 20px;
-  }
+}
+
+/* The pill's own border shows focus; skip the global ring inside it. */
+.search-input:focus-visible {
+  outline: none;
 }

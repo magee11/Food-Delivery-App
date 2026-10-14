@@ -1,46 +1,27 @@
 import React, { useContext, useState } from "react";
+import "./home.css";
 import ExporeMenu from "../../components/ExploreMenu/ExporeMenu";
 import Header from "../../components/Header/Header";
 import DisplayFood from "../../components/DisplayFood/DisplayFood";
+import Offers from "../../components/Offers/Offers";
 import AppDownload from "../../components/AppDownload/AppDownload";
-import {
-  Link,
-  Button,
-  Element,
-  Events,
-  animateScroll as scroll,
-  scrollSpy,
-} from "react-scroll";
 import { StoreContext } from "../../context/StoreContext";
 import SearchResult from "../../components/SearchResult/SearchResult";
-import { ToastContainer } from "react-toastify";
 
 const Home = () => {
-  const [category, setCategory] = useState("All");  
+  const [category, setCategory] = useState("All");
   const { searchQuery, isSearch } = useContext(StoreContext);
-  console.log(searchQuery, "SearchQuery");
+
+  if (isSearch && searchQuery.trim().length > 0) return <SearchResult />;
+
   return (
-    <div>
-      {searchQuery.length > 0 && isSearch ? (
-        <SearchResult />
-      ) : (
-        <>
-          <ToastContainer />
-          <Element name="header">
-            <Header />
-          </Element>
-          <Element name="menu">
-            <ExporeMenu category={category} setCategory={setCategory} />
-          </Element>
-          <Element name="food">
-            <DisplayFood category={category} />
-          </Element>
-          <Element name="app-download">
-            <AppDownload />
-          </Element>
-        </>
-      )}
-    </div>
+    <>
+      <Header />
+      <Offers />
+      <ExporeMenu category={category} setCategory={setCategory} />
+      <DisplayFood category={category} />
+      <AppDownload />
+    </>
   );
 };
 

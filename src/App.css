@@ -1,4 +1,7 @@
 .app {
-  padding: 0 10%;
+  padding: 0 var(--page-x);
+  max-width: 1440px;
+  margin: 0 auto;
+  min-height: 60vh;
   position: relative;
 }

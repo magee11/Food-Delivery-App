@@ -1,23 +1,21 @@
-.google-signin{
-    background-color: transparent;
-    height: inherit;
-    width: inherit;
-    font-size: 16px;
-    display: flex;
-    justify-content: center;
-    font-weight: 500;
+.google-signin button {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 10px;
+  padding: 12px;
+  border-radius: 999px;
+  border: 1.5px solid var(--border);
+  background: var(--surface);
+  font-weight: 600;
+  font-size: 15px;
+  transition: border-color 0.2s;
 }
-.google-signin img{
-    height: 25px;
-    width: 25px;
+.google-signin button:hover {
+  border-color: var(--text-muted);
 }
-.google-signin button{
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    font-weight: 500;
-    padding: 6px;
-    gap: 6px;
-    border: 1px solid tomato;
-    border-radius: 6px;
+.google-signin img {
+  width: 20px;
+  height: 20px;
 }
